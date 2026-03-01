@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 260px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .header svg {
+      flex-shrink: 0;
+    }
+
+    .header h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .volume-display {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .volume-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: #0095cc;
+    }
+
+    .volume-value.boosted {
+      color: #e05520;
+    }
+
+    .volume-label {
+      font-size: 11px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slider-container {
+      margin-bottom: 16px;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right, #0095cc 0%, #e05520 100%);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #0095cc;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    .presets {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .preset-btn {
+      padding: 6px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      color: #555;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .preset-btn:hover {
+      background: #e8f4f8;
+      border-color: #0095cc;
+      color: #333;
+    }
+
+    .preset-btn.active {
+      background: #0095cc;
+      border-color: #0095cc;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .reset-btn {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fff;
+      color: #555;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .reset-btn:hover {
+      background: #eee;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0095cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    </svg>
+    <h1>Volume Booster</h1>
+  </div>
+
+  <div class="volume-display">
+    <div class="volume-value" id="volumeValue">100%</div>
+    <div class="volume-label">volume level</div>
+  </div>
+
+  <div class="slider-container">
+    <input type="range" id="volumeSlider" min="0" max="600" value="100" step="5">
+  </div>
+
+  <div class="presets">
+    <button class="preset-btn" data-gain="100">100%</button>
+    <button class="preset-btn" data-gain="200">200%</button>
+    <button class="preset-btn" data-gain="400">400%</button>
+    <button class="preset-btn" data-gain="600">600%</button>
+  </div>
+
+  <button class="reset-btn" id="resetBtn">Reset to Normal</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
